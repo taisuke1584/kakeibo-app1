@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>家計簿入力</title>
+</head>
+<body>
+
+<h2>家計簿入力</h2>
+
+<h3>認証</h3>
+<input type="password" id="password" placeholder="パスワード">
+
+<input type="number" id="eating_out" placeholder="外食費"><br>
+<input type="number" id="cooking" placeholder="自炊費"><br>
+
+<input type="number" id="gasoline" placeholder="ガソリン代"><br>
+<input type="number" id="gas_price" placeholder="単価"><br>
+
+<input type="number" id="electric" placeholder="電気"><br>
+<input type="number" id="gas" placeholder="ガス"><br>
+<input type="number" id="water" placeholder="水道"><br>
+
+<input type="number" id="hobby_me" placeholder="趣味(自分)"><br>
+<input type="number" id="hobby_gf" placeholder="趣味(彼女)"><br>
+
+<button onclick="sendData()">送信</button>
+
+<script>
+function sendData() {
+  const url = "https://script.google.com/macros/s/AKfycbwuTOAIC6Vs1_eNpBAOqNkF0ydOrmUEQcH9QZijgoJdqhtEZc9ZJO9pxVuEPUhlfDUODg/exec";
+
+const data = {
+  password: document.getElementById("password").value,
+  eating_out: document.getElementById("eating_out").value || 0,
+  cooking: document.getElementById("cooking").value || 0,
+  gasoline: document.getElementById("gasoline").value || 0,
+  gas_price: document.getElementById("gas_price").value || 0,
+  electric: document.getElementById("electric").value || 0,
+  gas: document.getElementById("gas").value || 0,
+  water: document.getElementById("water").value || 0,
+  hobby_me: document.getElementById("hobby_me").value || 0,
+  hobby_gf: document.getElementById("hobby_gf").value || 0
+};
+
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => alert("送信完了！"));
+}
+</script>
+
+</body>
+</html>
